@@ -3,6 +3,7 @@ package com.example.mak_ratanak_assignment_sqlite;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                         boolean alreadyExists = false;
                         for(int i = 0; i < userList.size(); i++){
                             UserModel model = userList.get(i);
+                            Log.e("show data:: ", "email: " + model.getEmail() + " password: " + model.getPassword());
                             if(model.getEmail() == email && model.getPassword() == password){
                                 alreadyExists = true;
                                 Toast toast = Toast.makeText(getApplicationContext(), "This user is already exists!", Toast.LENGTH_LONG);
@@ -64,6 +66,9 @@ public class RegisterActivity extends AppCompatActivity {
                             helper.insertUser(email, password);
                             Toast toast = Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG);
                             toast.show();
+                            etEmail.setText("");
+                            etPassword.setText("");
+                            etConfirmPassword.setText("");
                             Intent i = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(i);
                         }

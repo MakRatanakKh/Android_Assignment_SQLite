@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // check if user is already exists
                 ArrayList<UserModel> userList = helper.getAllUser();
+                Log.e("SHOW DATA::", userList.toString());
                 boolean alreadyExists = false;
                 for(int i = 0; i < userList.size(); i++){
                     UserModel model = userList.get(i);
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                         alreadyExists = true;
                         Toast toast = Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG);
                         toast.show();
+                        etEmail.setText("");
+                        etPassword.setText("");
                         break;
                     }
                 }
