@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mak_ratanak_assignment_sqlite.model.UserModel;
@@ -21,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String TABLE_USER="users";
 
     EditText etEmail, etPassword;
-    Button btnLogin, btnRegister;
+    TextView tvRegister;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_pwd);
         btnLogin = findViewById(R.id.btn_login);
-        btnRegister = findViewById(R.id.btn_register);
+        tvRegister = findViewById(R.id.tv_register);
 
         final DBHelper helper = new DBHelper(this);
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, RegisterActivity.class);
